@@ -6,7 +6,9 @@
 //
 
 import SwiftUI
+
 import AppKit
+import UserNotifications
 
 struct ContentView: View {
     @State private var batteryLevel: Int = 0
@@ -26,11 +28,23 @@ struct ContentView: View {
         }
         .padding()
         .onAppear() {
+            askUserPermissions()
             let (percentage, isCharging) = getBatteryInfo()
             self.$batteryLevel.wrappedValue = Int(percentage)
             self.isBatteryCharging = isCharging
         }
     }
+}
+
+func askUserPermissions() {
+    let center = UNUserNotificationCenter.current()
+    center.requestAuthorization(options: [.alert, .badge, .sound], completionHandler: {
+        (granted, error) in
+        if (error != nil) {
+        } else {
+            
+        }
+    })
 }
 
 #Preview {
