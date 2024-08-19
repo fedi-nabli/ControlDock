@@ -37,6 +37,7 @@ struct ContentView: View {
             .frame(maxWidth: .infinity, alignment: .center)
         }
         .padding()
+        .frame(width: 300, height: 200)
         .onAppear() {
             askUserPermissions()
             updateBatteryInfo()
